@@ -7,7 +7,10 @@ function App() {
 
   // IMPORTANTE: Cambia esta URL por la que te dé Railway cuando despliegues el backend
   // Si estás probando localmente, usualmente es http://localhost:8000
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+  let API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+  if (API_URL && !API_URL.startsWith('http')) {
+    API_URL = 'https://' + API_URL;
+  }
 
   useEffect(() => {
     // Llama a la raíz del backend para obtener el mensaje de bienvenida
